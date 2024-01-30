@@ -1,0 +1,1211 @@
+/* ESTILOS GERAIS DE TODAS AS PÁGINAS */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 100px;
+    padding-bottom: 10px;
+}
+
+html {
+    background-image: linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.40)100%), url('./img/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+    position:absolute; 
+    height:100%; 
+    width:100%;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: center;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100px;
+    background-color: black;
+    z-index: 1;
+    
+}
+
+.container-usuario-autorizado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-usuario-nao-autorizado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-user {
+    visibility: hidden;
+    display: none;
+}
+
+h1 {
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Roboto', sans-serif;
+    /* font-size: 60px; */
+    font-weight: lighter;
+    text-align: center;
+}
+
+p {
+    color: white;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Zilla Slab', serif;
+    font-style: italic;
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.uil uil-nav {
+    visibility: hidden;
+    display: none;
+}
+
+#uil-nav {
+    color: white;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+#uil-nav:hover {
+    size: large;
+    background-color: rgb(255, 255, 255, .30);
+    border-radius: 3px;
+}
+
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    display: flex;
+}
+
+.container-user {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.nome-usuario {
+    font-size: 12.5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.sair-usuario {
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    color: rgb(255, 255, 255, .50);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.sair-usuario:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, .30);
+    border-radius: 3px;
+    padding: 2px;
+}
+
+button {
+    cursor: pointer;
+    margin: 10px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    border-radius: 7.5px;
+    width: 200px;
+    height: 50px;
+    background: rgba(0,0,0,.75);
+    border: 0;
+    list-style: none;    
+}
+
+button:hover {
+    color: white;
+    background: rgba(0,0,0,.6);
+}
+
+a {
+    text-decoration: none;
+}
+
+.container-form {
+    position: relative;
+    margin-bottom: 1.25em;
+}
+
+input {
+    color: transparent;
+    margin-top: 20px;
+    border: 0;
+    border-bottom: 3px solid rgba(0,0,0,.50);
+    border-radius: 3px;
+    outline: none;
+    background-color: rgb(255, 255, 255, .40);
+}
+
+input[type=text] {
+    font-family: 'Roboto', sans-serif;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    color: #424242;
+    display: flex;
+    align-items: center;
+    cursor: text;
+    transition: .3s ease-in-out;
+    pointer-events: none;
+}
+
+input, label {
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    width: 100%;
+    height: 40px;
+}
+
+input:focus + label, 
+input:valid + label {
+    color: #424242;
+    top: -15px;
+    pointer-events: none;
+    color: white;
+}
+
+input:focus,
+input:valid {
+    color: black;
+    border-bottom: 3px solid rgb(0, 0, 0, .90);
+    background-color: rgb(255, 255, 255, .75);
+}
+
+input:hover {
+    background-color: rgb(255, 255, 255, .60);
+}
+
+input::placeholder{
+    color: transparent;
+    transition: .3s ease-in-out;
+    text-align: left;
+}
+
+input:focus::placeholder{
+    color: gray;
+}
+
+datalist {
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    pointer-events: all;
+    position: absolute;
+    background-color: rgb(255, 255, 255, .75);
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+}
+  
+option {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #424242;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12.5px;
+    width: 100%;
+}
+
+option:hover, .active{
+    background-color: rgb(255, 255, 255, .9);
+}
+
+ul {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+sub {
+    position: relative;
+    top: 2.5px;
+}
+
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+th {
+    background-color: rgb(0, 0, 0, .70);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    border-left: 2px solid white;
+    border-bottom: 4px solid white;
+    height: 60px;
+}
+
+td {
+    visibility: hidden;
+    display: none;
+    background-color: rgb(0, 0, 0, .30);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    border: 2px solid white;
+    height: 30px;
+}
+
+.container {
+    width: 750px;
+    display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(0, 0, 0, .30);
+    
+}
+
+.sucesso {
+    height: 200px;
+    margin: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.falha {
+    height: 200px;
+    margin: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.usuario-nao-autorizado-secundario {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: xx-large;
+    font-style: normal;
+}
+
+.container-usuario-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-usuario {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-usuario-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+#container-geral {
+    width: 1500px;
+}
+
+.content {
+    visibility: hidden;
+    display: none;
+}
+
+.title {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE LOGIN */
+.container-dados-usuario-geral {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-titulos-usuario {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    font-weight: bolder;
+}
+
+.container-dados-usuario {
+    display: grid;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.campo-obrigatorio-usuarios {
+    margin-right: 50px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+.container-usuario-administrador {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-users {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-to-update-users {
+    visibility: hidden;
+    display: none;
+}
+
+#container-update-users {
+    visibility: hidden;
+    display: none;
+}
+
+#container-usuario-atualizado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-usuario-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-senha-divergente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-usuario-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-buttons-clients {
+    margin-top: 20px;
+}
+
+#container-usuario-adicionado {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE CLIENTES */
+#container-options {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.container-cliente-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-cliente-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-cliente-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-cliente-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-cliente {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-obrigatorio-clientes {
+    margin-right: 275px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-clients {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-cliente-encontrado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-dados-cliente-geral {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.container-titulos-cliente {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    margin-left: auto;
+    font-weight: bolder;
+}
+
+.container-dados-cliente {
+    display: grid;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+#container-add-clients {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-search-to-update-clients {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-update-clients {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+.container-campos-nao-preenchidos {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-nao-preenchido {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+#container-delete-clients {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-cliente-adicionado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-cliente-atualizado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-cliente-deletado {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE INSTALAÇÕES */
+.container-instalacao-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-instalacao-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-instalacao-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-instalacao-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-instalacao {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-obrigatorio-instalacoes {
+    margin-right: 275px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+#container-instalacao-encontrada {
+    visibility: hidden;
+    display: none;
+}
+
+.container-dados-instalacao-geral {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.container-titulos-instalacao {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    margin-left: auto;
+    font-weight: bolder;
+}
+
+.container-dados-instalacao {
+    display: grid;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+#container-instalacao-adicionada {
+    visibility: hidden;
+    display: none;
+}
+
+#container-instalacao-atualizada {
+    visibility: hidden;
+    display: none;
+}
+
+#container-instalacao-deletada {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-instalations {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-instalations {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-to-update-instalations {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-update-instalations {
+    visibility: hidden;
+    display: none;
+}
+
+#container-delete-instalations {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE MÓDULOS */
+.container-modulo-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-modulo-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-modulo-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-modulo-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-modulo {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-obrigatorio-modulos {
+    margin-right: 275px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+#container-modulo-encontrado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-modulo-adicionado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-to-update-modules {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-modulo-atualizado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-modulo-deletado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-dados-modulo-geral {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.container-titulos-modulo {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    margin-left: auto;
+    font-weight: bolder;
+}
+
+.container-dados-modulo {
+    display: grid;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+#container-search-modules {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-modules-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-modules {
+    display: flex;
+    flex-direction: column;
+}
+
+#container-update-modules-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-update-modules {
+    display: flex;
+    flex-direction: column;
+}
+
+#container-delete-modules {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE INVERSORES */
+.container-inversor-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-inversor-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-inversor-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-inversor-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-inversor {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-obrigatorio-inversores {
+    margin-right: 275px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+#container-inversor-encontrado {
+    visibility: hidden;
+    display: none;
+}
+
+.container-dados-inversor-geral {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.container-titulos-inversor {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    margin-left: auto;
+    font-weight: bolder;
+}
+
+.container-dados-inversor {
+    display: grid;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+#container-inversor-adicionado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-inversor-atualizado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-inversor-deletado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-inverters {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-inverters-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-inverters {
+    display: flex;
+    flex-direction: column;
+}
+
+#container-search-to-update-inverters {
+    visibility: hidden;
+    display: none;
+    transition: .3s ease-in-out;
+}
+
+#container-update-inverters-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-update-inverters {
+    display: flex;
+    flex-direction: column;
+}
+
+#container-delete-inverters {
+    visibility: hidden;
+    display: none;
+}
+
+/* ESTILOS DAS CLASSES DA PÁGINA DE PROJETOS */
+.container-projeto-existente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-projeto-existente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.container-projeto-inexistente {
+    align-items: center;
+    visibility: hidden;
+    display: none;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.campo-projeto-inexistente {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: red;
+}
+
+.falha-projeto {
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.campo-obrigatorio-projetos {
+    margin-right: 275px;
+    font-size: small;
+    visibility: hidden;
+    display: none;
+}
+
+.container-dados-projeto-geral {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-titulos-projeto {
+    display: grid;
+    text-align: right;
+    margin-right: 5px;
+    font-weight: bolder;
+}
+
+.container-dados-projeto {
+    display: grid;
+    text-align: left;
+    margin-left: 5px;
+}
+
+#container-projeto-encontrado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-projeto-adicionado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-projeto-atualizado {
+    visibility: hidden;
+    display: none;
+}
+
+#container-projeto-impresso {
+    visibility: hidden;
+    display: none;
+}
+
+#container-projeto-deletado {
+    visibility: hidden;
+    display: none;
+}
+
+.checkbox {
+    cursor: pointer;
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background-color: rgb(255, 255, 255, .75);
+    transition: .15s ease-in-out;
+}
+
+.checkbox:valid,
+.checkbox:not(:checked) {
+    border: 0;
+    border-color: rgb(255, 255, 255, .75);
+    background-color: rgb(255, 255, 255, .75);
+}
+
+.checkbox:checked {
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    background-color: rgb(255, 255, 255, 1);
+}
+
+span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    pointer-events: none;
+    color: white;
+}
+
+.form-checkbox {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container-checkbox {
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+
+#container-search-to-update-projects {
+    visibility: hidden;
+    display: none;
+}
+
+#container-search-projects {
+    visibility: hidden;
+    display: none;
+}
+
+#container-add-projects-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-update-projects-general {
+    visibility: hidden;
+    display: none;
+}
+
+#container-print-projects {
+    visibility: hidden;
+    display: none;
+}
+
+#container-delete-projects {
+    visibility: hidden;
+    display: none;
+}
+
+.container-aumento-carga {
+    visibility: hidden;
+    display: none;
+}
+
+.container-agrupamento {
+    visibility: hidden;
+    display: none;
+}
+
+.form-checkbox-aumento-usina {
+    visibility: hidden;
+}
+
+.container-modulo-2 {
+    visibility: hidden;
+    display: none;
+}
+
+.container-inversor-2 {
+    visibility: hidden;
+    display: none;
+}
+
+.container-inversor-3 {
+    visibility: hidden;
+    display: none;
+}
+
+.container-inversor-4 {
+    visibility: hidden;
+    display: none;
+}
+
+.container-add-inverter {
+    margin-top: 50px;
+}

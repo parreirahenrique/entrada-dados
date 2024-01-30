@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada de Dados - Projetos Fotovoltaicos</title>
+
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="./style.css">
+    <!--ICONSCOUT CDN-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:ital,wght@0,100;1,700&family=Roboto&family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+    
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+
+    <!-- JAVA SCRIPT FILE -->
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script defer src="./script.js"></script>
+    <script defer src="./App.js"></script>
+</head>
+<body onload="checar_autorizacao(); get_username()">
+    <header>
+        <nav class="flexbox">
+            <p>Entrada de Projetos</p>
+            <div class="container-nav">
+                <a href="./components/auth.html"><i class="uil uil-user" id="uil-nav"></i></a>
+                <div class="container-user">
+                    <p class="nome-usuario">Usuário</p>
+                    <a class="sair-usuario" onclick="logout()">Sair</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-usuario-autorizado">
+        <div class="container">
+            <ul>
+                <li><a href="./components/auth.html"><button class="menu-btn">Usuário</button></li>
+                <li><a href="./components/client.html"><button class="menu-btn">Clientes</button></li>
+                <li><a href="./components/instalation.html"><button class="menu-btn">Instalações</button></a></li>
+                <li><a href="./components/module.html"><button class="menu-btn">Módulos</button></a></li>
+                <li><a href="./components/inverter.html"><button class="menu-btn">Inversores</button></a></li>
+                <li><a href="./components/project.html"><button class="menu-btn">Projetos</button></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-usuario-nao-autorizado">
+        <div class="container">
+            <div class="container-usuario-inexistente">
+                <img src="./img/falha.png" class="falha-usuario">
+                <span class="campo-usuario-inexistente">Usuário inexistente.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="usuário" oninput="nome_usuario(this)" required>
+                    <label for="name">Usuário:</label>
+                    <span class="campo-obrigatorio-usuarios">Esse é um campo obrigatório.</span>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="password" id="senha" required>
+                    <label for="password">Senha:</label>
+                    <span class="campo-obrigatorio-usuarios">Esse é um campo obrigatório.</span>
+                </form>
+            </div>
+            <button onclick="login()">Entrar</button>
+        </div>
+    </div>
+</body>
+</html>

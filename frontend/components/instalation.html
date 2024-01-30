@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalações</title>
+
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="../style.css">
+    <!--ICONSCOUT CDN-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:ital,wght@0,100;1,700&family=Roboto&family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+    
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+
+    <!-- JAVA SCRIPT FILE -->
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script defer src="../script.js"></script>
+    <script defer src="../App.js"></script>
+</head>
+<body onload="checar_autorizacao(); get_username();">
+    <div class="container-usuario-autorizado">
+        <header>
+            <nav class="flexbox">
+                <p>Instalações</p>
+                <div class="container-nav">
+                    <a href="../index.html"><i class="uil uil-home" id="uil-nav"></i></a>
+                    <a href="./auth.html"><i class="uil uil-user" id="uil-nav"></i></a>
+                    <div class="container-user">
+                        <p class="nome-usuario">Usuário</p>
+                        <a class="sair-usuario" onclick="logout()">Sair</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container" id="container-options">
+            <button onclick="buscar_instalacao()"><i class="uil uil-search"></i> Buscar por instalação</button>
+            <button onclick="adicionar_instalacao()"><i class="uil uil-plus"></i> Adicionar nova instalação</button>
+            <button onclick="atualizar_instalacao()"><i class="uil uil-refresh"></i> Atualizar uma instalação</button>
+            <button onclick="deletar_instalacao()"><i class="uil uil-trash"></i> Deletar uma instalação</button>
+        </div>
+        <div class="container" id="container-search-instalations">
+            <div class="container-instalacao-inexistente">
+                <img src="../img/falha.png" class="falha-instalacao">
+                <span class="campo-instalacao-inexistente">Instalação inexistente.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="número-instalação-buscar" list="" autocomplete="off" onclick="mostrar_instalacoes('buscar')" oninput="filtrar_instalacoes('buscar')" placeholder="Ex.: 3000000000" required>
+                    <label for="name">Número da instalação*:</label>    
+                        <datalist id="numeroinstalacao-buscar">
+                        </datalist>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-buttons-instalations">
+                <button  onclick="get_instalation()">Buscar</button> <a href=""><button>Cancelar</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-instalacao-encontrada">
+            <div class="container-dados-instalacao-geral">
+                <div class="container-titulos-instalacao">
+                    <span class="title" id="title-instalation-number">Número da instalação:</span>
+                    <span class="title" id="title-instalation-client-number">Número do cliente:</span>
+                    <span class="title" id="title-instalation-street">Logradouro:</span>
+                    <span class="title" id="title-instalation-street-number">Número predial:</span>
+                    <span class="title" id="title-instalation-complement">Complemento:</span>
+                    <span class="title" id="title-instalation-district">Bairro:</span>
+                    <span class="title" id="title-instalation-city">Cidade:</span>
+                    <span class="title" id="title-instalation-cep">CEP:</span>
+                    <span class="title" id="title-instalation-latitude">Latitude:</span>
+                    <span class="title" id="title-instalation-longitude">Longitude:</span>
+                    <span class="title" id="title-instalation-coordinates">Coordenadas decimais:</span>
+                    <span class="title" id="title-instalation-added-in">Adicionado em:</span>
+                </div>
+                <div class="container-dados-instalacao">
+                    <span class="content" id="instalation-number"></span>
+                    <span class="content" id="instalation-client-number"></span>
+                    <span class="content" id="instalation-street"></span>
+                    <span class="content" id="instalation-street-number"></span>
+                    <span class="content" id="instalation-complement"></span>
+                    <span class="content" id="instalation-district"></span>
+                    <span class="content" id="instalation-city"></span>
+                    <span class="content" id="instalation-cep"></span>
+                    <span class="content" id="instalation-latitude"></span>
+                    <span class="content" id="instalation-longitude"></span>
+                    <span class="content" id="instalation-coordinates"></span>
+                    <span class="content" id="instalation-added-in"></span>
+                </div>
+            </div>
+            <div class="container-buttons-instalations">
+                <button onclick="buscar_instalacao()">Buscar nova instalação</button>  <a href=""><button>Voltar</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-add-instalations">
+            <div class="container-instalacao-existente">
+                <img src="../img/falha.png" class="falha-instalacao">
+                <span class="campo-instalacao-existente">Instalação já cadastrada.</span>
+            </div>
+            <form class="form-checkbox">
+                <input type="checkbox" class="checkbox" id="checkbox-ligacao-adicionar" required onchange="ligacao_nova('adicionar')">
+                <span>Ligação nova</span>
+            </form>
+            <div class="container-form" id="container-form-numero-instalacao-adicionar">
+                <form>
+                    <input type="text" id="número-instalação-adicionar" oninput="apenas_numeros(this)" placeholder="Ex.: 3000000000" required>
+                    <label for="name">Número da instalação*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form autocomplete="off">
+                    <input type="text" id="número-cliente-adicionar" list="" autocomplete="off" onclick="mostrar_clientes('adicionar')" oninput="filtrar_clientes('adicionar')" placeholder="Ex.: 7000000000" required>
+                    <label for="name">Número do cliente*:</label>    
+                        <datalist id="numerocliente-adicionar">
+                        </datalist>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="logradouro-adicionar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Logradouro*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="numero-predial-adicionar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Número predial*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="complemento-adicionar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Complemento*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="bairro-adicionar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Bairro*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="cidade-adicionar" oninput="apenas_letras(this)" required>
+                    <label for="name">Cidade*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="cep-adicionar" oninput="cep(this)" required>
+                    <label for="name">CEP*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="classificacao-adicionar" list="" autocomplete="off" onclick="mostrar_classificacoes('adicionar')" required>
+                    <label for="name">Classificação*:</label>    
+                        <datalist id="classificacaocliente-adicionar">
+                            <option value="Residencial">Residencial</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Poder Público">Poder Público</option>
+                            <option value="Iluminação Pública">Iluminação Pública</option>
+                            <option value="Serviço Público">Serviço Público</option>
+                        </datalist>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="latitude-adicionar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Latitude*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="longitude-adicionar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Longitude*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="coordenadas-decimais-adicionar" required>
+                    <label for="name">Coordenadas decimais*:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-buttons-instalations">
+                <button  onclick="post_instalation()">Adicionar</button> <a href=""><button>Cancelar</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-instalacao-adicionada">
+            <img src="../img/sucesso.png" class="sucesso">
+            <h1>Instalação adicionada com sucesso!</h1>
+            <div class="container-buttons-instalations">
+                <button onclick="adicionar_instalacao()">Adicionar nova instalação</button>  <a href="./project.html"><button>Ir para projetos</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-search-to-update-instalations">
+            <div class="container-form">
+                <form>
+                    <input type="text" id="número-instalação-buscar-atualizar" list="" autocomplete="off" onclick="mostrar_instalacoes('buscar-atualizar')" oninput="filtrar_instalacoes('buscar-atualizar')" placeholder="Ex.: 3000000000" required>
+                    <label for="name">Número da instalação*:</label>    
+                        <datalist id="numeroinstalacao-buscar-atualizar">
+                        </datalist>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+                <form class="form-checkbox">
+                    <input type="checkbox" class="checkbox" id="checkbox-numero-instalacao" required">
+                    <span>Deseja atualizar o número da instalação?</span>
+                </form>
+            </div>
+            <div class="container-buttons-clients">
+                <button onclick="mostrar_campos_atualizar_instalacoes()">Buscar</button> <a href=""><button>Cancelar</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-update-instalations">
+            <div class="container-campos-nao-preenchidos">
+                <img src="../img/falha.png" class="falha-instalacao">
+                <span class="campo-nao-preenchido">Preencha pelo menos um dos campos.</span>
+            </div>
+            <div class="container-instalacao-inexistente">
+                <img src="../img/falha.png" class="falha-instalacao">
+                <span class="campo-cliente-inexistente">Instalação inexistente.</span>
+            </div>
+            <form class="form-checkbox" id="form-checkbox-ligacao-atualizar">
+                <input type="checkbox" class="checkbox" id="checkbox-ligacao-atualizar" required onchange="ligacao_nova('atualizar')">
+                <span>Ligação nova</span>
+            </form>
+            <div class="container-form" id="container-form-numero-instalacao-atualizar">
+                <form>
+                    <input type="text" id="número-instalação-atualizar" oninput="apenas_numeros(this)" placeholder="Ex.: 3000000000" required>
+                    <label for="name">Número da instalação:</label>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="número-cliente-atualizar" list="" autocomplete="off" onclick="mostrar_clientes('atualizar')" oninput="filtrar_clientes('atualizar')" placeholder="Ex.: 7000000000" required>
+                    <label for="name">Número do cliente*:</label>    
+                        <datalist id="numerocliente-atualizar">
+                        </datalist>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="logradouro-atualizar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Logradouro:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="numero-predial-atualizar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Número predial:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="complemento-atualizar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Complemento:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="bairro-atualizar" oninput="remover_caracteres_especiais(this)" required>
+                    <label for="name">Bairro:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="cidade-atualizar" oninput="apenas_letras(this)" required>
+                    <label for="name">Cidade:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="cep-atualizar" oninput="cep(this)" required>
+                    <label for="name">CEP:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="classificacao-atualizar" list="" autocomplete="off" onclick="mostrar_classificacoes('atualizar')" required>
+                    <label for="name">Classificação:</label>    
+                        <datalist id="classificacaocliente-atualizar">
+                            <option value="Residencial">Residencial</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Poder Público">Poder Público</option>
+                            <option value="Iluminação Pública">Iluminação Pública</option>
+                            <option value="Serviço Público">Serviço Público</option>
+                        </datalist>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="latitude-atualizar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Latitude:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="longitude-atualizar" oninput="apenas_numeros(this)" required>
+                    <label for="name">Longitude:</label>
+                </form>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="name" id="coordenadas-decimais-atualizar" required>
+                    <label for="name">Coordenadas decimais:</label>
+                </form>
+            </div>
+            <div class="container-buttons-instalations">
+                <button onclick="patch_instalation()">Atualizar</button> <button onclick="atualizar_instalacao()">Voltar</button>
+            </div>
+        </div>
+        <div class="container" id="container-instalacao-atualizada">
+            <img src="../img/sucesso.png" class="sucesso">
+            <h1>Instalação atualizada com sucesso!</h1>
+            <div class="container-buttons-instalations">
+                <a href="./project.html"><button>Ir para projetos</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-delete-instalations">
+            <div class="container-instalacao-inexistente">
+                <img src="../img/falha.png" class="falha-instalacao">
+                <span class="campo-instalacao-inexistente">Instalação inexistente.</span>
+            </div>
+            <div class="container-form">
+                <form>
+                    <input type="text" id="número-instalação-deletar" list="" autocomplete="off" onclick="mostrar_instalacoes('deletar')" oninput="filtrar_instalacoes('deletar')" placeholder="Ex.: 3000000000" required>
+                    <label for="name">Número da instalação*:</label>    
+                        <datalist id="numeroinstalacao-deletar">
+                        </datalist>
+                </form>
+                <span class="campo-obrigatorio-instalacoes">Esse é um campo obrigatório.</span>
+            </div>
+            <div class="container-buttons-instalations">
+                <button onclick="delete_instalation()">Deletar</button> <a href=""><button>Cancelar</button></a>
+            </div>
+        </div>
+        <div class="container" id="container-instalacao-deletada">
+            <img src="../img/sucesso.png" class="sucesso">
+            <h1>Instalação deletada com sucesso!</h1>
+            <div class="container-buttons-instalations">
+                <a href=""><button>Voltar</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-usuario-nao-autorizado">
+        <div class="container">
+            <img src="../img/falha.png" class="falha">
+            <p class="usuario-nao-autorizado-principal">Acesso negado.</p>
+            <p class="usuario-nao-autorizado-secundario">Faça login primeiro.</p>
+            <a href="./auth.html"><button>Ir para a página de logins</button></a>
+        </div>
+    </div>
+</body>
+</html>
